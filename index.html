@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concentmory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Css/reset.css">
+    <link rel="stylesheet" href="Css/styles.css">
+    </head>
+<body>
+    <!-- BLOQUE HEADER -->
+    <header>
+        <img src="Media/Static/nadaWebLogo1.png" alt="Logo OneNada" height="100">
+        <h1>Concentmory</h1>
+    </header>
+    <!-- BLOQUE MAIN/FORMULARIO -->
+    <main>
+        <div>
+            <p id="error"></p>
+        </div>
+        <form action="juego.html" id="formPrincipal">
+            <div class="itemform">
+                <label for="nick">Nick *</label>
+                <input type="text" name="nicka" value="@" id="nicka" readonly>
+                <input type="text" name="nick"  id="nick" required minlength="3">
+            </div>
+            <div class="itemform">
+                <label for="tamano">Tamaño del juego *</label>
+                <select name="tamano" id="tamano" required>
+                    <option value="4">Normal</option>
+                    <option value="6">Grande</option>
+                </select>
+            </div>
+            <div class="itemform">
+                <label for="timeSelect">Dificultad</label>
+                <select name="timeSelect" id="timeSelect" onchange="dificultad()" >
+                    <option value="30">30 segundos</option>
+                    <option value="20">20 segundos</option>
+                    <option value="10">10 segundos</option>
+                </select>
+            </div>
+            <div class="itemform">
+                <label for="avatar">Avatar Drag & Drop</label>
+                <div id="avatar">
+                    <div id="avatarContainer">
+                        <img src="Media/Static/avatar1.png" alt="" id="avatarImg">
+                    </div>
+                </div>
+            <div id="avatargrid">
+                <div class="avatarItem">
+                    <img src="Media/Static/avatar1.png" alt="" class="avatarImgItem" width=35 draggable="true"></div>
+                <div class="avatarItem">
+                    <img src="Media/Static/avatar2.png" alt="" class="avatarImgItem" width=35 draggable="true"></div>
+                <div class="avatarItem">
+                    <img src="Media/Static/avatar3.png" alt="" class="avatarImgItem" width=35 draggable="true"></div>
+                <div class="avatarItem">
+                    <img src="Media/Static/avatar4.png" alt="" class="avatarImgItem" width=35 draggable="true"></div>
+                <div class="avatarItem">
+                    <img src="Media/Static/avatar5.png" alt="" class="avatarImgItem" width=35 draggable="true"></div>
+                <div class="avatarItem">
+                    <img src="Media/Static/avatar6.png" alt="" class="avatarImgItem" width=35 draggable="true"></div>
+            </div>
+            </div>
+            <div class="itemForm">
+                <p id="obligatorio">* Obligatorio</p>
+            </div>
+            <div class="itemform">
+                <input type="submit" value="JUGAR" id="jugar">
+            </div>
+        </form>
+
+    </main>
+    <!-- BLOQUE FOOTER -->
+    <footer>
+        <p>Proyecto FrontEnd con HTML, CSS y JS</p>
+
+    </footer>
+    <!-- CODIGO JS -->
+    <script src="Js/userData.js"></script>
+    <script src="Js/app.js"></script>
+</body>
+</html>

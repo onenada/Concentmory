@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Css/reset.css">
+    <link rel="stylesheet" href="Css/juegostyles.css">
+    <title>Concentmory</title>
+    </head>
+<body>
+    <!-- BLOQUE HEADER -->
+    <header>
+        <img src="Media/Static/nadaWebLogo1.png" alt="Logo OneNada" height="100" id="logo">
+    </header>
+    <!-- BLOQUE MAIN -->
+    <main>
+        <div id="userContainer">
+            <form id="form_entrada" action="juego.html">
+                <div class="=itemForm">
+                    <img src="Media/Static/avatar1.png" width="52" id="avatarImg">
+                </div>
+                <div class="itemForm">
+                    <label for="nick">Nick</label>
+                    <input type="text" id="nick" value="nick" readonly>
+                </div>
+                <div class="itemForm">
+                    <label for="puntuacion">Puntuación</label>
+                    <input type="text" id="puntuacion" value="0" class="gameInput" readonly>
+                </div>
+                <div class="itemForm">
+                    <label for="time">Tiempo restante</label>
+                    <input type="text" id="time" value="30" class="gameInput" readonly>
+                </div>
+            </form>
+        </div>
+            <!-- BLOQUE JUEGO -->
+        <div id="gameContainer">
+            <div id="game">
+                <!-- Pintado automatico del panel -->
+                <!-- <div class="containerItem"><div class="item"></div></div> -->
+            </div>
+            <!-- <div id="endGame">
+                <button id="newGame">NUEVO JUEGO</button>
+            </div> -->
+            <!-- <div id="gameTittle">
+                <p>Concentmory</p>
+            </div> -->
+        </div>
+            <!-- BLOQUE PUNTUACIÓN -->
+    </main>
+<footer>
+    <!-- CODIGO JS -->
+    <script src="Js/userData.js"></script>
+    <script src="Js/juego.js"></script>
+</footer>
+</body>
+</html>

@@ -1,0 +1,306 @@
+/* Selectores Generales */
+
+header{
+    text-align: center;
+}
+body{
+    background-color: #f5f5f5;
+    font-family: 'Lato',sans-serif;
+}
+footer{
+    margin: 30px auto 0px auto;
+    text-align: center;
+    width: 800px;
+    
+}
+main{
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto 10px auto;
+}
+form{
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    
+}
+label{
+    display: block;
+    margin-bottom: 10px;
+}
+input{
+    display: inline;
+    font-family: 'Lato',sans-serif;
+    width: 200px;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    border-radius: 0px 5px 5px 0px;
+    font-weight: 200;
+    font-size: 18px;
+}
+select{
+    font-family: 'Lato'sans-serif;
+    width: 100px;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+}
+p{
+    font-size: 14px;
+}
+img{
+    float: left;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    border-radius: 5px 0px 0px 5px;
+}
+/* Selectores de clase */
+.gameInput{
+    border-radius: 5px;
+    width: 248px;
+}
+/* CARTA BOCA ABAJO */
+.containerItem{
+    background-image: url('/Media/Static/Cards/back.jpg');
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+    min-height: 104px;
+}
+
+ /* CARTA IMG BOCA ARRIBA */
+.cambioImg{
+    background-image: url(/Media/Static/Cards/cambio.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+    min-height: 104px;
+}
+.craneoImg{
+    background-image: url(/Media/Static/Cards/craneo.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+    min-height: 104px;
+}
+.controlImg{
+    background-image: url(/Media/Static/Cards/control.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+    min-height: 104px;
+}
+.dragon2Img{
+    background-image: url(/Media/Static/Cards/dragon2.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+    min-height: 104px;
+}
+.dragonImg{
+    background-image: url(/Media/Static/Cards/dragon.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+    min-height: 104px;
+}
+.dragonbbImg{
+    background-image: url(/Media/Static/Cards/dragonbb.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+    min-height: 104px;
+}
+.eyesImg{
+    background-image: url(/Media/Static/Cards/eyes.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+    min-height: 104px;
+}
+.graveImg{
+    background-image: url(/Media/Static/Cards/grave.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+    min-height: 104px;
+}
+.holeImg{
+    background-image: url(/Media/Static/Cards/hole.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+    min-height: 104px;
+}
+.kuribohImg{
+    background-image: url(/Media/Static/Cards/kuriboh.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+    min-height: 104px;
+}
+.mageImg{
+    background-image: url(/Media/Static/Cards/mage.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+    min-height: 104px;
+}
+.mage2Img{
+    background-image: url(/Media/Static/Cards/mage2.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+    min-height: 104px;
+}
+.mage3Img{
+    background-image: url(/Media/Static/Cards/mage3.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+    min-height: 104px;
+}
+.obelisImg{
+    background-image: url(/Media/Static/Cards/obelis.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+    min-height: 104px;
+}
+.sliImg{
+    background-image: url(/Media/Static/Cards/sli.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+    min-height: 104px;
+}
+.raImg{
+    background-image: url(/Media/Static/Cards/ra.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+    min-height: 104px;
+}
+.renacerImg{
+    background-image: url(/Media/Static/Cards/renacer.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+    min-height: 104px;
+}
+.polyImg{
+    background-image: url(/Media/Static/Cards/poly.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+    min-height: 104px;
+}
+.eyesImg{
+    background-image: url(/Media/Static/Cards/eyes.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+    min-height: 104px;
+}
+
+.endGameColor{
+    background-color: #263238;
+    transition: background-color 0.7s;
+}
+
+/* Selectores de IDs */
+header img#logo{
+    border: none;
+    margin: 5px auto 5px auto;
+    text-align: center;
+    float: none;
+    align-items: center;
+    text-align: center;
+}
+#gameContainer{
+    display: flex;
+    width: 700px;
+    height: 700px;
+    margin: 10px auto 10px auto;
+    padding: 5px;
+}
+#game{
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    justify-items: center;
+    align-items: center;
+    width: 447px;
+    min-height: 300px;
+    background-color: #fff;
+    gap: 5px;
+    margin: 1px auto 1px auto;
+}
+#game img{
+    object-fit: fill;
+}
+#endGame{
+    z-index: 1;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ced4da;
+    border-radius: 5px 5px 0px 0px;
+    width: 500px;
+    height: 417px;
+}
+
+#endGame button{
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    padding: 10px 0px 10px 0px;
+    font-family: 'LAto',sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 5px;
+    width: 200px;
+}
+
+#gameTittle{
+    margin-top: 416px;
+    width: 500px;
+    background-color: black;
+    border: 1px solid #ced4da;
+    border-radius: 0px 0px 5px 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #fff;
+    text-align: center;
+}
+#gameTittle p{
+    font-size: 24px;
+    color: white;
+}
+#userContainer{
+    margin: 10px auto 10px auto;
+    width: 1fr;
+}
