@@ -136,888 +136,928 @@ function programarEventosJuego(){
 function comenzarMarcar(event){
     console.log('ya hay una carta seleccionada es: ' + cartaMarcada + ' ' + cartaVolteada);
     console.log('la primera carta es '+ primeraCarta + 'y su clase es ' + primeraCartaClass);
-    let item=event.target;
-    // Hay una carta ya seleccionada entra en el bloque //
-    if(cartaVolteada){
-            // Verifico si la carta esta boca abajo
-        if(item.classList.contains('containerItem')){
-            // Si tiene craneo debajo //
-            if(item.classList.contains('craneo')){
-                // Volteamos la carta al eliminar la img boca abajo //
-                item.classList.remove('containerItem');
-                // mostramos la imagen que esta debajo //
-                item.classList.add('craneoImg');
-                // La primera carta seleccionada es igual a la segunda //
-                if(cartaMarcada==='craneo'){
-                    // Sumamos un movimiento //
-                    movimientos ++;
-                    // Reseteamos todos los valores de seleccion //
-                    cartaVolteada=false;
-                    cartaMarcada-null;
-                    primeraCartaClass=undefined;
-                    document.getElementById('1').id=null;
-                    console.log('Felicidades encontraste la pareja de tu carta');
-                }
-                // la primera carta no es igual a la segunda //
-                else {
-                    // Sumamos un movimiento //
-                    movimientos ++;
-                    // Reseteamos todos los valores de seleccion //
-                    cartaVolteada=false;
-                    cartaMarcada=null;
-                    // Añadimos un timeout para dar el efecto de volteo y una ventana de tiempo //
-                    // par que el usuario sea capas de ver la carta y reiniciar la jugada // 
-                    setTimeout(function() {
-                        //Volteamos nuevamente la carta al quitar la imagen de abajo //
-                        // y colocar nuevamente la imagen de arriba //
-                        item.classList.remove('craneoImg');
-                        item.classList.add('containerItem');
-                        console.log('Volteamos nuevamente la carta no son iguales');
-                        document.getElementById('1').classList.remove(primeraCartaClass);
-                        document.getElementById('1').classList.add('containerItem');
-                        primeraCarta=undefined;
+    if(comparacionEnCurso) return;
+    else{
+        let item=event.target;
+        // Hay una carta ya seleccionada entra en el bloque //
+        if(cartaVolteada){
+            comparacionEnCurso=true;
+                // Verifico si la carta esta boca abajo
+            if(item.classList.contains('containerItem')){
+                // Si tiene craneo debajo //
+                if(item.classList.contains('craneo')){
+                    // Volteamos la carta al eliminar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // mostramos la imagen que esta debajo //
+                    item.classList.add('craneoImg');
+                    // La primera carta seleccionada es igual a la segunda //
+                    if(cartaMarcada==='craneo'){
+                        // Sumamos un movimiento //
+                        movimientos ++;
+                        // Reseteamos todos los valores de seleccion //
+                        cartaVolteada=false;
+                        cartaMarcada-null;
                         primeraCartaClass=undefined;
                         document.getElementById('1').id=null;
-                    }, 750);
+                        comparacionEnCurso=false;
+                        console.log('Felicidades encontraste la pareja de tu carta');
+                    }
+                    // la primera carta no es igual a la segunda //
+                    else {
+                        // Sumamos un movimiento //
+                        movimientos ++;
+                        // Reseteamos todos los valores de seleccion //
+                        cartaVolteada=false;
+                        cartaMarcada=null;
+                        // Añadimos un timeout para dar el efecto de volteo y una ventana de tiempo //
+                        // par que el usuario sea capas de ver la carta y reiniciar la jugada // 
+                        setTimeout(function() {
+                            //Volteamos nuevamente la carta al quitar la imagen de abajo //
+                            // y colocar nuevamente la imagen de arriba //
+                            item.classList.remove('craneoImg');
+                            item.classList.add('containerItem');
+                            console.log('Volteamos nuevamente la carta no son iguales');
+                            document.getElementById('1').classList.remove(primeraCartaClass);
+                            document.getElementById('1').classList.add('containerItem');
+                            primeraCarta=undefined;
+                            primeraCartaClass=undefined;
+                            document.getElementById('1').id=null;
+                            comparacionEnCurso=false;
+                        }, 750);
+                    }
                 }
-            }
-            // Si tiene control debajo //
-            if(item.classList.contains('control')){
-                // Volteamos la carta al eliminar la img boca abajo //
-                item.classList.remove('containerItem');
-                // mostramos la imagen que esta debajo //
-                item.classList.add('controlImg');
-                // La primera carta seleccionada es igual a la segunda //
-                if(cartaMarcada==='control'){
-                    movimientos ++;
-                    cartaVolteada=false;
-                    cartaMarcada=null;
-                    primeraCartaClass=undefined;
-                    document.getElementById('1').id=null;
-                    console.log('Felicidades encontraste la pareja de tu carta');
-                }
-                // la primera carta no es igual a la segunda //
-                else {
-                    movimientos ++
-                    cartaVolteada=false;
-                    item.classList.remove('controlImg');
-                    item.classList.add('containerItem');
-                    cartaMarcada=null;
-                    setTimeout(function() {
-                        //Volteamos nuevamente la carta al quitar la imagen de abajo //
-                        // y colocar nuevamente la imagen de arriba //
+                // Si tiene control debajo //
+                if(item.classList.contains('control')){
+                    // Volteamos la carta al eliminar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // mostramos la imagen que esta debajo //
+                    item.classList.add('controlImg');
+                    // La primera carta seleccionada es igual a la segunda //
+                    if(cartaMarcada==='control'){
+                        movimientos ++;
+                        cartaVolteada=false;
+                        cartaMarcada=null;
+                        primeraCartaClass=undefined;
+                        document.getElementById('1').id=null;
+                        comparacionEnCurso=false;
+                        console.log('Felicidades encontraste la pareja de tu carta');
+                    }
+                    // la primera carta no es igual a la segunda //
+                    else {
+                        movimientos ++
+                        cartaVolteada=false;
                         item.classList.remove('controlImg');
                         item.classList.add('containerItem');
-                        console.log('Volteamos nuevamente la carta no son iguales');
-                        document.getElementById('1').classList.remove(primeraCartaClass);
-                        document.getElementById('1').classList.add('containerItem');
-                        primeraCarta=undefined;
-                        primeraCartaClass=undefined;
+                        cartaMarcada=null;
+                        setTimeout(function() {
+                            //Volteamos nuevamente la carta al quitar la imagen de abajo //
+                            // y colocar nuevamente la imagen de arriba //
+                            item.classList.remove('controlImg');
+                            item.classList.add('containerItem');
+                            console.log('Volteamos nuevamente la carta no son iguales');
+                            document.getElementById('1').classList.remove(primeraCartaClass);
+                            document.getElementById('1').classList.add('containerItem');
+                            primeraCarta=undefined;
+                            primeraCartaClass=undefined;
+                            document.getElementById('1').id=null;
+                            comparacionEnCurso=false;
+                        }, 750);
+                    }
+                }
+                // Si tiene dragonbb debajo //
+                if(item.classList.contains('dragonbb')){
+                    // Volteamos la carta al eliminar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // mostramos la imagen que esta debajo //
+                    item.classList.add('dragonbbImg');
+                    // La primera carta seleccionada es igual a la segunda //
+                    if(cartaMarcada==='dragonbb'){
+                        movimientos ++
+                        cartaVolteada=false
                         document.getElementById('1').id=null;
-                    }, 750);
-                }
-            }
-            // Si tiene dragonbb debajo //
-            if(item.classList.contains('dragonbb')){
-                // Volteamos la carta al eliminar la img boca abajo //
-                item.classList.remove('containerItem');
-                // mostramos la imagen que esta debajo //
-                item.classList.add('dragonbbImg');
-                // La primera carta seleccionada es igual a la segunda //
-                if(cartaMarcada==='dragonbb'){
-                    movimientos ++
-                    cartaVolteada=false
-                    document.getElementById('1').id=null;
-                    console.log('Felicidades encontraste la pareja de tu carta');
-                }
-                // la primera carta no es igual a la segunda //
-                else {
-                    movimientos ++
-                    cartaVolteada=false;
-                    item.classList.remove('dragonbblImg');
-                    item.classList.add('containerItem');
-                    cartaMarcada=null
-                    setTimeout(function() {
-                        //Volteamos nuevamente la carta al quitar la imagen de abajo //
-                        // y colocar nuevamente la imagen de arriba //
-                        item.classList.remove('dragonbbImg');
+                        comparacionEnCurso=false;
+                        console.log('Felicidades encontraste la pareja de tu carta');
+                    }
+                    // la primera carta no es igual a la segunda //
+                    else {
+                        movimientos ++
+                        cartaVolteada=false;
+                        item.classList.remove('dragonbblImg');
                         item.classList.add('containerItem');
-                        console.log('Volteamos nuevamente la carta no son iguales');
-                        document.getElementById('1').classList.remove(primeraCartaClass);
-                        document.getElementById('1').classList.add('containerItem');
-                        primeraCarta=undefined;
-                        primeraCartaClass=undefined;
+                        cartaMarcada=null
+                        setTimeout(function() {
+                            //Volteamos nuevamente la carta al quitar la imagen de abajo //
+                            // y colocar nuevamente la imagen de arriba //
+                            item.classList.remove('dragonbbImg');
+                            item.classList.add('containerItem');
+                            console.log('Volteamos nuevamente la carta no son iguales');
+                            document.getElementById('1').classList.remove(primeraCartaClass);
+                            document.getElementById('1').classList.add('containerItem');
+                            primeraCarta=undefined;
+                            primeraCartaClass=undefined;
+                            document.getElementById('1').id=null;
+                            comparacionEnCurso=false;
+                        }, 750);
+                    }
+                }
+                // Si tiene cambio debajo //
+                if(item.classList.contains('cambio')){
+                    // Volteamos la carta al eliminar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // mostramos la imagen que esta debajo //
+                    item.classList.add('cambioImg');
+                    // La primera carta seleccionada es igual a la segunda //
+                    if(cartaMarcada==='cambio'){
+                        movimientos ++
+                        cartaVolteada=false
                         document.getElementById('1').id=null;
-                    }, 750);
-                }
-            }
-            // Si tiene cambio debajo //
-            if(item.classList.contains('cambio')){
-                // Volteamos la carta al eliminar la img boca abajo //
-                item.classList.remove('containerItem');
-                // mostramos la imagen que esta debajo //
-                item.classList.add('cambioImg');
-                // La primera carta seleccionada es igual a la segunda //
-                if(cartaMarcada==='cambio'){
-                    movimientos ++
-                    cartaVolteada=false
-                    document.getElementById('1').id=null;
-                    console.log('Felicidades encontraste la pareja de tu carta');
-                }
-                // la primera carta no es igual a la segunda //
-                else {
-                    movimientos ++
-                    cartaVolteada=false;
-                    item.classList.remove('cambiolImg');
-                    item.classList.add('containerItem');
-                    cartaMarcada=null
-                    setTimeout(function() {
-                        //Volteamos nuevamente la carta al quitar la imagen de abajo //
-                        // y colocar nuevamente la imagen de arriba //
-                        item.classList.remove('cambioImg');
+                        comparacionEnCurso=false;
+                        console.log('Felicidades encontraste la pareja de tu carta');
+                    }
+                    // la primera carta no es igual a la segunda //
+                    else {
+                        movimientos ++
+                        cartaVolteada=false;
+                        item.classList.remove('cambiolImg');
                         item.classList.add('containerItem');
-                        console.log('Volteamos nuevamente la carta no son iguales');
-                        document.getElementById('1').classList.remove(primeraCartaClass);
-                        document.getElementById('1').classList.add('containerItem');
-                        primeraCarta=undefined;
-                        primeraCartaClass=undefined;
+                        cartaMarcada=null
+                        setTimeout(function() {
+                            //Volteamos nuevamente la carta al quitar la imagen de abajo //
+                            // y colocar nuevamente la imagen de arriba //
+                            item.classList.remove('cambioImg');
+                            item.classList.add('containerItem');
+                            console.log('Volteamos nuevamente la carta no son iguales');
+                            document.getElementById('1').classList.remove(primeraCartaClass);
+                            document.getElementById('1').classList.add('containerItem');
+                            primeraCarta=undefined;
+                            primeraCartaClass=undefined;
+                            document.getElementById('1').id=null;
+                            comparacionEnCurso=false;
+                        }, 750);
+                    }
+                }
+                // Si tiene dragon debajo //
+                if(item.classList.contains('dragon')){
+                    // Volteamos la carta al eliminar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // mostramos la imagen que esta debajo //
+                    item.classList.add('dragonImg');
+                    // La primera carta seleccionada es igual a la segunda //
+                    if(cartaMarcada==='dragon'){
+                        movimientos ++
+                        cartaVolteada=false
                         document.getElementById('1').id=null;
-                    }, 750);
-                }
-            }
-            // Si tiene dragon debajo //
-            if(item.classList.contains('dragon')){
-                // Volteamos la carta al eliminar la img boca abajo //
-                item.classList.remove('containerItem');
-                // mostramos la imagen que esta debajo //
-                item.classList.add('dragonImg');
-                // La primera carta seleccionada es igual a la segunda //
-                if(cartaMarcada==='dragon'){
-                    movimientos ++
-                    cartaVolteada=false
-                    document.getElementById('1').id=null;
-                    console.log('Felicidades encontraste la pareja de tu carta');
-                }
-                // la primera carta no es igual a la segunda //
-                else {
-                    movimientos ++
-                    cartaVolteada=false;
-                    item.classList.remove('dragonlImg');
-                    item.classList.add('containerItem');
-                    cartaMarcada=null
-                    setTimeout(function() {
-                        //Volteamos nuevamente la carta al quitar la imagen de abajo //
-                        // y colocar nuevamente la imagen de arriba //
-                        item.classList.remove('dragonImg');
+                        comparacionEnCurso=false;
+                        console.log('Felicidades encontraste la pareja de tu carta');
+                    }
+                    // la primera carta no es igual a la segunda //
+                    else {
+                        movimientos ++
+                        cartaVolteada=false;
+                        item.classList.remove('dragonlImg');
                         item.classList.add('containerItem');
-                        console.log('Volteamos nuevamente la carta no son iguales');
-                        document.getElementById('1').classList.remove(primeraCartaClass);
-                        document.getElementById('1').classList.add('containerItem');
-                        primeraCarta=undefined;
-                        primeraCartaClass=undefined;
+                        cartaMarcada=null
+                        setTimeout(function() {
+                            //Volteamos nuevamente la carta al quitar la imagen de abajo //
+                            // y colocar nuevamente la imagen de arriba //
+                            item.classList.remove('dragonImg');
+                            item.classList.add('containerItem');
+                            console.log('Volteamos nuevamente la carta no son iguales');
+                            document.getElementById('1').classList.remove(primeraCartaClass);
+                            document.getElementById('1').classList.add('containerItem');
+                            primeraCarta=undefined;
+                            primeraCartaClass=undefined;
+                            document.getElementById('1').id=null;
+                            comparacionEnCurso=false;
+                        }, 750);
+                    }
+                }
+                // Si tiene dragon2 debajo //
+                if(item.classList.contains('dragon2')){
+                    // Volteamos la carta al eliminar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // mostramos la imagen que esta debajo //
+                    item.classList.add('dragon2Img');
+                    // La primera carta seleccionada es igual a la segunda //
+                    if(cartaMarcada==='dragon2'){
+                        movimientos ++
+                        cartaVolteada=false
                         document.getElementById('1').id=null;
-                    }, 750);
-                }
-            }
-            // Si tiene dragon2 debajo //
-            if(item.classList.contains('dragon2')){
-                // Volteamos la carta al eliminar la img boca abajo //
-                item.classList.remove('containerItem');
-                // mostramos la imagen que esta debajo //
-                item.classList.add('dragon2Img');
-                // La primera carta seleccionada es igual a la segunda //
-                if(cartaMarcada==='dragon2'){
-                    movimientos ++
-                    cartaVolteada=false
-                    document.getElementById('1').id=null;
-                    console.log('Felicidades encontraste la pareja de tu carta');
-                }
-                // la primera carta no es igual a la segunda //
-                else {
-                    movimientos ++
-                    cartaVolteada=false;
-                    item.classList.remove('dragon2lImg');
-                    item.classList.add('containerItem');
-                    cartaMarcada=null
-                    setTimeout(function() {
-                        //Volteamos nuevamente la carta al quitar la imagen de abajo //
-                        // y colocar nuevamente la imagen de arriba //
-                        item.classList.remove('dragon2Img');
+                        comparacionEnCurso=false;
+                        console.log('Felicidades encontraste la pareja de tu carta');
+                    }
+                    // la primera carta no es igual a la segunda //
+                    else {
+                        movimientos ++
+                        cartaVolteada=false;
+                        item.classList.remove('dragon2lImg');
                         item.classList.add('containerItem');
-                        console.log('Volteamos nuevamente la carta no son iguales');
-                        document.getElementById('1').classList.remove(primeraCartaClass);
-                        document.getElementById('1').classList.add('containerItem');
-                        primeraCarta=undefined;
-                        primeraCartaClass=undefined;
+                        cartaMarcada=null
+                        setTimeout(function() {
+                            //Volteamos nuevamente la carta al quitar la imagen de abajo //
+                            // y colocar nuevamente la imagen de arriba //
+                            item.classList.remove('dragon2Img');
+                            item.classList.add('containerItem');
+                            console.log('Volteamos nuevamente la carta no son iguales');
+                            document.getElementById('1').classList.remove(primeraCartaClass);
+                            document.getElementById('1').classList.add('containerItem');
+                            primeraCarta=undefined;
+                            primeraCartaClass=undefined;
+                            document.getElementById('1').id=null;
+                            comparacionEnCurso=false;
+                        }, 750);
+                    }
+                }
+                // Si tiene eyes debajo //
+                if(item.classList.contains('eyes')){
+                    // Volteamos la carta al eliminar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // mostramos la imagen que esta debajo //
+                    item.classList.add('eyesImg');
+                    // La primera carta seleccionada es igual a la segunda //
+                    if(cartaMarcada==='eyes'){
+                        movimientos ++
+                        cartaVolteada=false
                         document.getElementById('1').id=null;
-                    }, 750);
-                }
-            }
-            // Si tiene eyes debajo //
-            if(item.classList.contains('eyes')){
-                // Volteamos la carta al eliminar la img boca abajo //
-                item.classList.remove('containerItem');
-                // mostramos la imagen que esta debajo //
-                item.classList.add('eyesImg');
-                // La primera carta seleccionada es igual a la segunda //
-                if(cartaMarcada==='eyes'){
-                    movimientos ++
-                    cartaVolteada=false
-                    document.getElementById('1').id=null;
-                    console.log('Felicidades encontraste la pareja de tu carta');
-                }
-                // la primera carta no es igual a la segunda //
-                else {
-                    movimientos ++
-                    cartaVolteada=false;
-                    item.classList.remove('eyeslImg');
-                    item.classList.add('containerItem');
-                    cartaMarcada=null
-                    setTimeout(function() {
-                        //Volteamos nuevamente la carta al quitar la imagen de abajo //
-                        // y colocar nuevamente la imagen de arriba //
-                        item.classList.remove('eyesImg');
+                        comparacionEnCurso=false;
+                        console.log('Felicidades encontraste la pareja de tu carta');
+                    }
+                    // la primera carta no es igual a la segunda //
+                    else {
+                        movimientos ++
+                        cartaVolteada=false;
+                        item.classList.remove('eyeslImg');
                         item.classList.add('containerItem');
-                        console.log('Volteamos nuevamente la carta no son iguales');
-                        document.getElementById('1').classList.remove(primeraCartaClass);
-                        document.getElementById('1').classList.add('containerItem');
-                        primeraCarta=undefined;
-                        primeraCartaClass=undefined;
+                        cartaMarcada=null
+                        setTimeout(function() {
+                            //Volteamos nuevamente la carta al quitar la imagen de abajo //
+                            // y colocar nuevamente la imagen de arriba //
+                            item.classList.remove('eyesImg');
+                            item.classList.add('containerItem');
+                            console.log('Volteamos nuevamente la carta no son iguales');
+                            document.getElementById('1').classList.remove(primeraCartaClass);
+                            document.getElementById('1').classList.add('containerItem');
+                            primeraCarta=undefined;
+                            primeraCartaClass=undefined;
+                            document.getElementById('1').id=null;
+                            comparacionEnCurso=false;
+                        }, 750);
+                    }
+                }
+                // Si tiene grave debajo //
+                if(item.classList.contains('grave')){
+                    // Volteamos la carta al eliminar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // mostramos la imagen que esta debajo //
+                    item.classList.add('graveImg');
+                    // La primera carta seleccionada es igual a la segunda //
+                    if(cartaMarcada==='grave'){
+                        movimientos ++
+                        cartaVolteada=false
                         document.getElementById('1').id=null;
-                    }, 750);
-                }
-            }
-            // Si tiene grave debajo //
-            if(item.classList.contains('grave')){
-                // Volteamos la carta al eliminar la img boca abajo //
-                item.classList.remove('containerItem');
-                // mostramos la imagen que esta debajo //
-                item.classList.add('graveImg');
-                // La primera carta seleccionada es igual a la segunda //
-                if(cartaMarcada==='grave'){
-                    movimientos ++
-                    cartaVolteada=false
-                    document.getElementById('1').id=null;
-                    console.log('Felicidades encontraste la pareja de tu carta');
-                }
-                // la primera carta no es igual a la segunda //
-                else {
-                    movimientos ++
-                    cartaVolteada=false;
-                    item.classList.remove('gravelImg');
-                    item.classList.add('containerItem');
-                    cartaMarcada=null
-                    setTimeout(function() {
-                        //Volteamos nuevamente la carta al quitar la imagen de abajo //
-                        // y colocar nuevamente la imagen de arriba //
-                        item.classList.remove('graveImg');
+                        comparacionEnCurso=false;
+                        console.log('Felicidades encontraste la pareja de tu carta');
+                    }
+                    // la primera carta no es igual a la segunda //
+                    else {
+                        movimientos ++
+                        cartaVolteada=false;
+                        item.classList.remove('gravelImg');
                         item.classList.add('containerItem');
-                        console.log('Volteamos nuevamente la carta no son iguales');
-                        document.getElementById('1').classList.remove(primeraCartaClass);
-                        document.getElementById('1').classList.add('containerItem');
-                        primeraCarta=undefined;
-                        primeraCartaClass=undefined;
+                        cartaMarcada=null
+                        setTimeout(function() {
+                            //Volteamos nuevamente la carta al quitar la imagen de abajo //
+                            // y colocar nuevamente la imagen de arriba //
+                            item.classList.remove('graveImg');
+                            item.classList.add('containerItem');
+                            console.log('Volteamos nuevamente la carta no son iguales');
+                            document.getElementById('1').classList.remove(primeraCartaClass);
+                            document.getElementById('1').classList.add('containerItem');
+                            primeraCarta=undefined;
+                            primeraCartaClass=undefined;
+                            document.getElementById('1').id=null;
+                            comparacionEnCurso=false;
+                        }, 750);
+                    }
+                }
+                // Si tiene hole debajo //
+                if(item.classList.contains('hole')){
+                    // Volteamos la carta al eliminar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // mostramos la imagen que esta debajo //
+                    item.classList.add('holeImg');
+                    // La primera carta seleccionada es igual a la segunda //
+                    if(cartaMarcada==='hole'){
+                        movimientos ++
+                        cartaVolteada=false
                         document.getElementById('1').id=null;
-                    }, 750);
-                }
-            }
-            // Si tiene hole debajo //
-            if(item.classList.contains('hole')){
-                // Volteamos la carta al eliminar la img boca abajo //
-                item.classList.remove('containerItem');
-                // mostramos la imagen que esta debajo //
-                item.classList.add('holeImg');
-                // La primera carta seleccionada es igual a la segunda //
-                if(cartaMarcada==='hole'){
-                    movimientos ++
-                    cartaVolteada=false
-                    document.getElementById('1').id=null;
-                    console.log('Felicidades encontraste la pareja de tu carta');
-                }
-                // la primera carta no es igual a la segunda //
-                else {
-                    movimientos ++
-                    cartaVolteada=false;
-                    item.classList.remove('holelImg');
-                    item.classList.add('containerItem');
-                    cartaMarcada=null
-                    setTimeout(function() {
-                        //Volteamos nuevamente la carta al quitar la imagen de abajo //
-                        // y colocar nuevamente la imagen de arriba //
-                        item.classList.remove('holeImg');
+                        comparacionEnCurso=false;
+                        console.log('Felicidades encontraste la pareja de tu carta');
+                    }
+                    // la primera carta no es igual a la segunda //
+                    else {
+                        movimientos ++
+                        cartaVolteada=false;
+                        item.classList.remove('holelImg');
                         item.classList.add('containerItem');
-                        console.log('Volteamos nuevamente la carta no son iguales');
-                        document.getElementById('1').classList.remove(primeraCartaClass);
-                        document.getElementById('1').classList.add('containerItem');
-                        primeraCarta=undefined;
-                        primeraCartaClass=undefined;
+                        cartaMarcada=null
+                        setTimeout(function() {
+                            //Volteamos nuevamente la carta al quitar la imagen de abajo //
+                            // y colocar nuevamente la imagen de arriba //
+                            item.classList.remove('holeImg');
+                            item.classList.add('containerItem');
+                            console.log('Volteamos nuevamente la carta no son iguales');
+                            document.getElementById('1').classList.remove(primeraCartaClass);
+                            document.getElementById('1').classList.add('containerItem');
+                            primeraCarta=undefined;
+                            primeraCartaClass=undefined;
+                            document.getElementById('1').id=null;
+                            comparacionEnCurso=false;
+                        }, 750);
+                    }
+                }
+                // Si tiene kuriboh debajo //
+                if(item.classList.contains('kuriboh')){
+                    // Volteamos la carta al eliminar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // mostramos la imagen que esta debajo //
+                    item.classList.add('kuribohImg');
+                    // La primera carta seleccionada es igual a la segunda //
+                    if(cartaMarcada==='kuriboh'){
+                        movimientos ++
+                        cartaVolteada=false
                         document.getElementById('1').id=null;
-                    }, 750);
-                }
-            }
-            // Si tiene kuriboh debajo //
-            if(item.classList.contains('kuriboh')){
-                // Volteamos la carta al eliminar la img boca abajo //
-                item.classList.remove('containerItem');
-                // mostramos la imagen que esta debajo //
-                item.classList.add('kuribohImg');
-                // La primera carta seleccionada es igual a la segunda //
-                if(cartaMarcada==='kuriboh'){
-                    movimientos ++
-                    cartaVolteada=false
-                    document.getElementById('1').id=null;
-                    console.log('Felicidades encontraste la pareja de tu carta');
-                }
-                // la primera carta no es igual a la segunda //
-                else {
-                    movimientos ++
-                    cartaVolteada=false;
-                    item.classList.remove('kuribohlImg');
-                    item.classList.add('containerItem');
-                    cartaMarcada=null
-                    setTimeout(function() {
-                        //Volteamos nuevamente la carta al quitar la imagen de abajo //
-                        // y colocar nuevamente la imagen de arriba //
-                        item.classList.remove('kuribohImg');
+                        comparacionEnCurso=false;
+                        console.log('Felicidades encontraste la pareja de tu carta');
+                    }
+                    // la primera carta no es igual a la segunda //
+                    else {
+                        movimientos ++
+                        cartaVolteada=false;
+                        item.classList.remove('kuribohlImg');
                         item.classList.add('containerItem');
-                        console.log('Volteamos nuevamente la carta no son iguales');
-                        document.getElementById('1').classList.remove(primeraCartaClass);
-                        document.getElementById('1').classList.add('containerItem');
-                        primeraCarta=undefined;
-                        primeraCartaClass=undefined;
+                        cartaMarcada=null
+                        setTimeout(function() {
+                            //Volteamos nuevamente la carta al quitar la imagen de abajo //
+                            // y colocar nuevamente la imagen de arriba //
+                            item.classList.remove('kuribohImg');
+                            item.classList.add('containerItem');
+                            console.log('Volteamos nuevamente la carta no son iguales');
+                            document.getElementById('1').classList.remove(primeraCartaClass);
+                            document.getElementById('1').classList.add('containerItem');
+                            primeraCarta=undefined;
+                            primeraCartaClass=undefined;
+                            document.getElementById('1').id=null;
+                            comparacionEnCurso=false;
+                        }, 750);
+                    }
+                }
+                // Si tiene mage debajo //
+                if(item.classList.contains('mage')){
+                    // Volteamos la carta al eliminar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // mostramos la imagen que esta debajo //
+                    item.classList.add('mageImg');
+                    // La primera carta seleccionada es igual a la segunda //
+                    if(cartaMarcada==='mage'){
+                        movimientos ++
+                        cartaVolteada=false
                         document.getElementById('1').id=null;
-                    }, 750);
-                }
-            }
-            // Si tiene mage debajo //
-            if(item.classList.contains('mage')){
-                // Volteamos la carta al eliminar la img boca abajo //
-                item.classList.remove('containerItem');
-                // mostramos la imagen que esta debajo //
-                item.classList.add('mageImg');
-                // La primera carta seleccionada es igual a la segunda //
-                if(cartaMarcada==='mage'){
-                    movimientos ++
-                    cartaVolteada=false
-                    document.getElementById('1').id=null;
-                    console.log('Felicidades encontraste la pareja de tu carta');
-                }
-                // la primera carta no es igual a la segunda //
-                else {
-                    movimientos ++
-                    cartaVolteada=false;
-                    item.classList.remove('magelImg');
-                    item.classList.add('containerItem');
-                    cartaMarcada=null
-                    setTimeout(function() {
-                        //Volteamos nuevamente la carta al quitar la imagen de abajo //
-                        // y colocar nuevamente la imagen de arriba //
-                        item.classList.remove('mageImg');
+                        comparacionEnCurso=false;
+                        console.log('Felicidades encontraste la pareja de tu carta');
+                    }
+                    // la primera carta no es igual a la segunda //
+                    else {
+                        movimientos ++
+                        cartaVolteada=false;
+                        item.classList.remove('magelImg');
                         item.classList.add('containerItem');
-                        console.log('Volteamos nuevamente la carta no son iguales');
-                        document.getElementById('1').classList.remove(primeraCartaClass);
-                        document.getElementById('1').classList.add('containerItem');
-                        primeraCarta=undefined;
-                        primeraCartaClass=undefined;
+                        cartaMarcada=null
+                        setTimeout(function() {
+                            //Volteamos nuevamente la carta al quitar la imagen de abajo //
+                            // y colocar nuevamente la imagen de arriba //
+                            item.classList.remove('mageImg');
+                            item.classList.add('containerItem');
+                            console.log('Volteamos nuevamente la carta no son iguales');
+                            document.getElementById('1').classList.remove(primeraCartaClass);
+                            document.getElementById('1').classList.add('containerItem');
+                            primeraCarta=undefined;
+                            primeraCartaClass=undefined;
+                            document.getElementById('1').id=null;
+                            comparacionEnCurso=false;
+                        }, 750);
+                    }
+                }
+                // Si tiene mage2 debajo //
+                if(item.classList.contains('mage2')){
+                    // Volteamos la carta al eliminar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // mostramos la imagen que esta debajo //
+                    item.classList.add('mage2Img');
+                    // La primera carta seleccionada es igual a la segunda //
+                    if(cartaMarcada==='mage2'){
+                        movimientos ++
+                        cartaVolteada=false
                         document.getElementById('1').id=null;
-                    }, 750);
-                }
-            }
-            // Si tiene mage2 debajo //
-            if(item.classList.contains('mage2')){
-                // Volteamos la carta al eliminar la img boca abajo //
-                item.classList.remove('containerItem');
-                // mostramos la imagen que esta debajo //
-                item.classList.add('mage2Img');
-                // La primera carta seleccionada es igual a la segunda //
-                if(cartaMarcada==='mage2'){
-                    movimientos ++
-                    cartaVolteada=false
-                    document.getElementById('1').id=null;
-                    console.log('Felicidades encontraste la pareja de tu carta');
-                }
-                // la primera carta no es igual a la segunda //
-                else {
-                    movimientos ++
-                    cartaVolteada=false;
-                    item.classList.remove('mage2lImg');
-                    item.classList.add('containerItem');
-                    cartaMarcada=null
-                    setTimeout(function() {
-                        //Volteamos nuevamente la carta al quitar la imagen de abajo //
-                        // y colocar nuevamente la imagen de arriba //
-                        item.classList.remove('mage2Img');
+                        comparacionEnCurso=false;
+                        console.log('Felicidades encontraste la pareja de tu carta');
+                    }
+                    // la primera carta no es igual a la segunda //
+                    else {
+                        movimientos ++
+                        cartaVolteada=false;
+                        item.classList.remove('mage2lImg');
                         item.classList.add('containerItem');
-                        console.log('Volteamos nuevamente la carta no son iguales');
-                        document.getElementById('1').classList.remove(primeraCartaClass);
-                        document.getElementById('1').classList.add('containerItem');
-                        primeraCarta=undefined;
-                        primeraCartaClass=undefined;
+                        cartaMarcada=null
+                        setTimeout(function() {
+                            //Volteamos nuevamente la carta al quitar la imagen de abajo //
+                            // y colocar nuevamente la imagen de arriba //
+                            item.classList.remove('mage2Img');
+                            item.classList.add('containerItem');
+                            console.log('Volteamos nuevamente la carta no son iguales');
+                            document.getElementById('1').classList.remove(primeraCartaClass);
+                            document.getElementById('1').classList.add('containerItem');
+                            primeraCarta=undefined;
+                            primeraCartaClass=undefined;
+                            document.getElementById('1').id=null;
+                            comparacionEnCurso=false;
+                        }, 750);
+                    }
+                }
+                // Si tiene mage3 debajo //
+                if(item.classList.contains('mage3')){
+                    // Volteamos la carta al eliminar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // mostramos la imagen que esta debajo //
+                    item.classList.add('mage3Img');
+                    // La primera carta seleccionada es igual a la segunda //
+                    if(cartaMarcada==='mage3'){
+                        movimientos ++
+                        cartaVolteada=false
                         document.getElementById('1').id=null;
-                    }, 750);
-                }
-            }
-            // Si tiene mage3 debajo //
-            if(item.classList.contains('mage3')){
-                // Volteamos la carta al eliminar la img boca abajo //
-                item.classList.remove('containerItem');
-                // mostramos la imagen que esta debajo //
-                item.classList.add('mage3Img');
-                // La primera carta seleccionada es igual a la segunda //
-                if(cartaMarcada==='mage3'){
-                    movimientos ++
-                    cartaVolteada=false
-                    document.getElementById('1').id=null;
-                    console.log('Felicidades encontraste la pareja de tu carta');
-                }
-                // la primera carta no es igual a la segunda //
-                else {
-                    movimientos ++
-                    cartaVolteada=false;
-                    item.classList.remove('mage3lImg');
-                    item.classList.add('containerItem');
-                    cartaMarcada=null
-                    setTimeout(function() {
-                        //Volteamos nuevamente la carta al quitar la imagen de abajo //
-                        // y colocar nuevamente la imagen de arriba //
-                        item.classList.remove('mage3Img');
+                        comparacionEnCurso=false;
+                        console.log('Felicidades encontraste la pareja de tu carta');
+                    }
+                    // la primera carta no es igual a la segunda //
+                    else {
+                        movimientos ++
+                        cartaVolteada=false;
+                        item.classList.remove('mage3lImg');
                         item.classList.add('containerItem');
-                        console.log('Volteamos nuevamente la carta no son iguales');
-                        document.getElementById('1').classList.remove(primeraCartaClass);
-                        document.getElementById('1').classList.add('containerItem');
-                        primeraCarta=undefined;
-                        primeraCartaClass=undefined;
+                        cartaMarcada=null
+                        setTimeout(function() {
+                            //Volteamos nuevamente la carta al quitar la imagen de abajo //
+                            // y colocar nuevamente la imagen de arriba //
+                            item.classList.remove('mage3Img');
+                            item.classList.add('containerItem');
+                            console.log('Volteamos nuevamente la carta no son iguales');
+                            document.getElementById('1').classList.remove(primeraCartaClass);
+                            document.getElementById('1').classList.add('containerItem');
+                            primeraCarta=undefined;
+                            primeraCartaClass=undefined;
+                            document.getElementById('1').id=null;
+                            comparacionEnCurso=false;
+                        }, 750);
+                    }
+                }
+                // Si tiene obelis debajo //
+                if(item.classList.contains('obelis')){
+                    // Volteamos la carta al eliminar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // mostramos la imagen que esta debajo //
+                    item.classList.add('obelisImg');
+                    // La primera carta seleccionada es igual a la segunda //
+                    if(cartaMarcada==='obelis'){
+                        movimientos ++
+                        cartaVolteada=false
                         document.getElementById('1').id=null;
-                    }, 750);
-                }
-            }
-            // Si tiene obelis debajo //
-            if(item.classList.contains('obelis')){
-                // Volteamos la carta al eliminar la img boca abajo //
-                item.classList.remove('containerItem');
-                // mostramos la imagen que esta debajo //
-                item.classList.add('obelisImg');
-                // La primera carta seleccionada es igual a la segunda //
-                if(cartaMarcada==='obelis'){
-                    movimientos ++
-                    cartaVolteada=false
-                    document.getElementById('1').id=null;
-                    console.log('Felicidades encontraste la pareja de tu carta');
-                }
-                // la primera carta no es igual a la segunda //
-                else {
-                    movimientos ++
-                    cartaVolteada=false;
-                    item.classList.remove('obelislImg');
-                    item.classList.add('containerItem');
-                    cartaMarcada=null
-                    setTimeout(function() {
-                        //Volteamos nuevamente la carta al quitar la imagen de abajo //
-                        // y colocar nuevamente la imagen de arriba //
-                        item.classList.remove('obelisImg');
+                        comparacionEnCurso=false;
+                        console.log('Felicidades encontraste la pareja de tu carta');
+                    }
+                    // la primera carta no es igual a la segunda //
+                    else {
+                        movimientos ++
+                        cartaVolteada=false;
+                        item.classList.remove('obelislImg');
                         item.classList.add('containerItem');
-                        console.log('Volteamos nuevamente la carta no son iguales');
-                        document.getElementById('1').classList.remove(primeraCartaClass);
-                        document.getElementById('1').classList.add('containerItem');
-                        primeraCarta=undefined;
-                        primeraCartaClass=undefined;
+                        cartaMarcada=null
+                        setTimeout(function() {
+                            //Volteamos nuevamente la carta al quitar la imagen de abajo //
+                            // y colocar nuevamente la imagen de arriba //
+                            item.classList.remove('obelisImg');
+                            item.classList.add('containerItem');
+                            console.log('Volteamos nuevamente la carta no son iguales');
+                            document.getElementById('1').classList.remove(primeraCartaClass);
+                            document.getElementById('1').classList.add('containerItem');
+                            primeraCarta=undefined;
+                            primeraCartaClass=undefined;
+                            document.getElementById('1').id=null;
+                            comparacionEnCurso=false;
+                        }, 750);
+                    }
+                }
+                // Si tiene poly debajo //
+                if(item.classList.contains('poly')){
+                    // Volteamos la carta al eliminar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // mostramos la imagen que esta debajo //
+                    item.classList.add('polyImg');
+                    // La primera carta seleccionada es igual a la segunda //
+                    if(cartaMarcada==='poly'){
+                        movimientos ++
+                        cartaVolteada=false
                         document.getElementById('1').id=null;
-                    }, 750);
-                }
-            }
-            // Si tiene poly debajo //
-            if(item.classList.contains('poly')){
-                // Volteamos la carta al eliminar la img boca abajo //
-                item.classList.remove('containerItem');
-                // mostramos la imagen que esta debajo //
-                item.classList.add('polyImg');
-                // La primera carta seleccionada es igual a la segunda //
-                if(cartaMarcada==='poly'){
-                    movimientos ++
-                    cartaVolteada=false
-                    document.getElementById('1').id=null;
-                    console.log('Felicidades encontraste la pareja de tu carta');
-                }
-                // la primera carta no es igual a la segunda //
-                else {
-                    movimientos ++
-                    cartaVolteada=false;
-                    item.classList.remove('polylImg');
-                    item.classList.add('containerItem');
-                    cartaMarcada=null
-                    setTimeout(function() {
-                        //Volteamos nuevamente la carta al quitar la imagen de abajo //
-                        // y colocar nuevamente la imagen de arriba //
-                        item.classList.remove('polyImg');
+                        comparacionEnCurso=false;
+                        console.log('Felicidades encontraste la pareja de tu carta');
+                    }
+                    // la primera carta no es igual a la segunda //
+                    else {
+                        movimientos ++
+                        cartaVolteada=false;
+                        item.classList.remove('polylImg');
                         item.classList.add('containerItem');
-                        console.log('Volteamos nuevamente la carta no son iguales');
-                        document.getElementById('1').classList.remove(primeraCartaClass);
-                        document.getElementById('1').classList.add('containerItem');
-                        primeraCarta=undefined;
-                        primeraCartaClass=undefined;
+                        cartaMarcada=null
+                        setTimeout(function() {
+                            //Volteamos nuevamente la carta al quitar la imagen de abajo //
+                            // y colocar nuevamente la imagen de arriba //
+                            item.classList.remove('polyImg');
+                            item.classList.add('containerItem');
+                            console.log('Volteamos nuevamente la carta no son iguales');
+                            document.getElementById('1').classList.remove(primeraCartaClass);
+                            document.getElementById('1').classList.add('containerItem');
+                            primeraCarta=undefined;
+                            primeraCartaClass=undefined;
+                            document.getElementById('1').id=null;
+                            comparacionEnCurso=false;
+                        }, 750);
+                    }
+                }
+                // Si tiene ra debajo //
+                if(item.classList.contains('ra')){
+                    // Volteamos la carta al eliminar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // mostramos la imagen que esta debajo //
+                    item.classList.add('raImg');
+                    // La primera carta seleccionada es igual a la segunda //
+                    if(cartaMarcada==='ra'){
+                        movimientos ++
+                        cartaVolteada=false
                         document.getElementById('1').id=null;
-                    }, 750);
-                }
-            }
-            // Si tiene ra debajo //
-            if(item.classList.contains('ra')){
-                // Volteamos la carta al eliminar la img boca abajo //
-                item.classList.remove('containerItem');
-                // mostramos la imagen que esta debajo //
-                item.classList.add('raImg');
-                // La primera carta seleccionada es igual a la segunda //
-                if(cartaMarcada==='ra'){
-                    movimientos ++
-                    cartaVolteada=false
-                    document.getElementById('1').id=null;
-                    console.log('Felicidades encontraste la pareja de tu carta');
-                }
-                // la primera carta no es igual a la segunda //
-                else {
-                    movimientos ++
-                    cartaVolteada=false;
-                    item.classList.remove('ralImg');
-                    item.classList.add('containerItem');
-                    cartaMarcada=null
-                    setTimeout(function() {
-                        //Volteamos nuevamente la carta al quitar la imagen de abajo //
-                        // y colocar nuevamente la imagen de arriba //
-                        item.classList.remove('raImg');
+                        comparacionEnCurso=false;
+                        console.log('Felicidades encontraste la pareja de tu carta');
+                    }
+                    // la primera carta no es igual a la segunda //
+                    else {
+                        movimientos ++
+                        cartaVolteada=false;
+                        item.classList.remove('ralImg');
                         item.classList.add('containerItem');
-                        console.log('Volteamos nuevamente la carta no son iguales');
-                        document.getElementById('1').classList.remove(primeraCartaClass);
-                        document.getElementById('1').classList.add('containerItem');
-                        primeraCarta=undefined;
-                        primeraCartaClass=undefined;
+                        cartaMarcada=null
+                        setTimeout(function() {
+                            //Volteamos nuevamente la carta al quitar la imagen de abajo //
+                            // y colocar nuevamente la imagen de arriba //
+                            item.classList.remove('raImg');
+                            item.classList.add('containerItem');
+                            console.log('Volteamos nuevamente la carta no son iguales');
+                            document.getElementById('1').classList.remove(primeraCartaClass);
+                            document.getElementById('1').classList.add('containerItem');
+                            primeraCarta=undefined;
+                            primeraCartaClass=undefined;
+                            document.getElementById('1').id=null;
+                            comparacionEnCurso=false;
+                        }, 750);
+                    }
+                }
+                // Si tiene renacer debajo //
+                if(item.classList.contains('renacer')){
+                    // Volteamos la carta al eliminar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // mostramos la imagen que esta debajo //
+                    item.classList.add('renacerImg');
+                    // La primera carta seleccionada es igual a la segunda //
+                    if(cartaMarcada==='renacer'){
+                        movimientos ++
+                        cartaVolteada=false
                         document.getElementById('1').id=null;
-                    }, 750);
-                }
-            }
-            // Si tiene renacer debajo //
-            if(item.classList.contains('renacer')){
-                // Volteamos la carta al eliminar la img boca abajo //
-                item.classList.remove('containerItem');
-                // mostramos la imagen que esta debajo //
-                item.classList.add('renacerImg');
-                // La primera carta seleccionada es igual a la segunda //
-                if(cartaMarcada==='renacer'){
-                    movimientos ++
-                    cartaVolteada=false
-                    document.getElementById('1').id=null;
-                    console.log('Felicidades encontraste la pareja de tu carta');
-                }
-                // la primera carta no es igual a la segunda //
-                else {
-                    movimientos ++
-                    cartaVolteada=false;
-                    item.classList.remove('renacerlImg');
-                    item.classList.add('containerItem');
-                    cartaMarcada=null
-                    setTimeout(function() {
-                        //Volteamos nuevamente la carta al quitar la imagen de abajo //
-                        // y colocar nuevamente la imagen de arriba //
-                        item.classList.remove('renacerImg');
+                        comparacionEnCurso=false;
+                        console.log('Felicidades encontraste la pareja de tu carta');
+                    }
+                    // la primera carta no es igual a la segunda //
+                    else {
+                        movimientos ++
+                        cartaVolteada=false;
+                        item.classList.remove('renacerlImg');
                         item.classList.add('containerItem');
-                        console.log('Volteamos nuevamente la carta no son iguales');
-                        document.getElementById('1').classList.remove(primeraCartaClass);
-                        document.getElementById('1').classList.add('containerItem');
-                        primeraCarta=undefined;
-                        primeraCartaClass=undefined;
+                        cartaMarcada=null
+                        setTimeout(function() {
+                            //Volteamos nuevamente la carta al quitar la imagen de abajo //
+                            // y colocar nuevamente la imagen de arriba //
+                            item.classList.remove('renacerImg');
+                            item.classList.add('containerItem');
+                            console.log('Volteamos nuevamente la carta no son iguales');
+                            document.getElementById('1').classList.remove(primeraCartaClass);
+                            document.getElementById('1').classList.add('containerItem');
+                            primeraCarta=undefined;
+                            primeraCartaClass=undefined;
+                            document.getElementById('1').id=null;
+                            comparacionEnCurso=false;
+                        }, 750);
+                    }
+                }
+                // Si tiene sli debajo //
+                if(item.classList.contains('sli')){
+                    // Volteamos la carta al eliminar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // mostramos la imagen que esta debajo //
+                    item.classList.add('sliImg');
+                    // La primera carta seleccionada es igual a la segunda //
+                    if(cartaMarcada==='sli'){
+                        movimientos ++
+                        cartaVolteada=false
                         document.getElementById('1').id=null;
-                    }, 750);
-                }
-            }
-            // Si tiene sli debajo //
-            if(item.classList.contains('sli')){
-                // Volteamos la carta al eliminar la img boca abajo //
-                item.classList.remove('containerItem');
-                // mostramos la imagen que esta debajo //
-                item.classList.add('sliImg');
-                // La primera carta seleccionada es igual a la segunda //
-                if(cartaMarcada==='sli'){
-                    movimientos ++
-                    cartaVolteada=false
-                    document.getElementById('1').id=null;
-                    console.log('Felicidades encontraste la pareja de tu carta');
-                }
-                // la primera carta no es igual a la segunda //
-                else {
-                    movimientos ++
-                    cartaVolteada=false;
-                    item.classList.remove('slilImg');
-                    item.classList.add('containerItem');
-                    cartaMarcada=null
-                    setTimeout(function() {
-                        //Volteamos nuevamente la carta al quitar la imagen de abajo //
-                        // y colocar nuevamente la imagen de arriba //
-                        item.classList.remove('sliImg');
+                        comparacionEnCurso=false;
+                        console.log('Felicidades encontraste la pareja de tu carta');
+                    }
+                    // la primera carta no es igual a la segunda //
+                    else {
+                        movimientos ++
+                        cartaVolteada=false;
+                        item.classList.remove('slilImg');
                         item.classList.add('containerItem');
-                        console.log('Volteamos nuevamente la carta no son iguales');
-                        document.getElementById('1').classList.remove(primeraCartaClass);
-                        document.getElementById('1').classList.add('containerItem');
-                        primeraCarta=undefined;
-                        primeraCartaClass=undefined;
-                        document.getElementById('1').id=null;
-                    }, 750);
+                        cartaMarcada=null
+                        setTimeout(function() {
+                            //Volteamos nuevamente la carta al quitar la imagen de abajo //
+                            // y colocar nuevamente la imagen de arriba //
+                            item.classList.remove('sliImg');
+                            item.classList.add('containerItem');
+                            console.log('Volteamos nuevamente la carta no son iguales');
+                            document.getElementById('1').classList.remove(primeraCartaClass);
+                            document.getElementById('1').classList.add('containerItem');
+                            primeraCarta=undefined;
+                            primeraCartaClass=undefined;
+                            document.getElementById('1').id=null;
+                            comparacionEnCurso=false;
+                        }, 750);
+                    }
                 }
             }
         }
-    }
-    // No hay aun una carta seleccionada debemos seleccionarla // 
-    else{
-        console.log('no hay carta seleccionada con anterioridad , selecciona la primera carta');
-        if(item.classList.contains('containerItem')){
-            // Si tiene craneo debajo //
-            if(item.classList.contains('craneo')){
-                // Volteamos la carta al quitar la img boca abajo //
-                item.classList.remove('containerItem');
-                // Mostramos la imagen de abajo //
-                item.classList.add('craneoImg');
-                // al ser la primera vez que clickamos quedara boca arriba //
-                cartaVolteada=true;
-                // marcamos que carta esta seleccionada //
-                cartaMarcada='craneo';
-                primeraCartaClass='craneoImg'
-                item.id='1';
-                console.log('su carta seleccionada es ' + cartaMarcada);
-            }
-            // Si tiene control debajo //
-            if(item.classList.contains('control')){
-                // Volteamos la carta al quitar la img boca abajo //
-                item.classList.remove('containerItem');
-                // Mostramos la imagen de abajo //
-                item.classList.add('controlImg');
-                // al ser la primera vez que clickamos quedara boca arriba //
-                cartaVolteada=true;
-                // marcamos que carta esta seleccionada //
-                cartaMarcada='control';
-                primeraCartaClass='controlImg'
-                item.id='1';
-                console.log('su carta seleccionada es ' + cartaMarcada);
-            }
-            // Si tiene dragonbb debajo //
-            if(item.classList.contains('dragonbb')){
-                // Volteamos la carta al quitar la img boca abajo //
-                item.classList.remove('containerItem');
-                // Mostramos la imagen de abajo //
-                item.classList.add('dragonbbImg');
-                // al ser la primera vez que clickamos quedara boca arriba //
-                cartaVolteada=true;
-                // marcamos que carta esta seleccionada //
-                cartaMarcada='dragonbb';
-                primeraCartaClass='dragonbbImg'
-                item.id='1';
-                console.log('su carta seleccionada es ' + cartaMarcada);
-            }
-            // Si tiene cambio debajo //
-            if(item.classList.contains('cambio')){
-                // Volteamos la carta al quitar la img boca abajo //
-                item.classList.remove('containerItem');
-                // Mostramos la imagen de abajo //
-                item.classList.add('cambioImg');
-                // al ser la primera vez que clickamos quedara boca arriba //
-                cartaVolteada=true;
-                // marcamos que carta esta seleccionada //
-                cartaMarcada='cambio';
-                primeraCartaClass='cambioImg'
-                item.id='1';
-                console.log('su carta seleccionada es ' + cartaMarcada);
-            }
-            // Si tiene dragon debajo //
-            if(item.classList.contains('dragon')){
-                // Volteamos la carta al quitar la img boca abajo //
-                item.classList.remove('containerItem');
-                // Mostramos la imagen de abajo //
-                item.classList.add('dragonImg');
-                // al ser la primera vez que clickamos quedara boca arriba //
-                cartaVolteada=true;
-                // marcamos que carta esta seleccionada //
-                cartaMarcada='dragon';
-                primeraCartaClass='dragonImg'
-                item.id='1';
-                console.log('su carta seleccionada es ' + cartaMarcada);
-            }
-            // Si tiene dragon2 debajo //
-            if(item.classList.contains('dragon2')){
-                // Volteamos la carta al quitar la img boca abajo //
-                item.classList.remove('containerItem');
-                // Mostramos la imagen de abajo //
-                item.classList.add('dragon2Img');
-                // al ser la primera vez que clickamos quedara boca arriba //
-                cartaVolteada=true;
-                // marcamos que carta esta seleccionada //
-                cartaMarcada='dragon2';
-                primeraCartaClass='dragon2Img'
-                item.id='1';
-                console.log('su carta seleccionada es ' + cartaMarcada);
-            }
-            // Si tiene eyes debajo //
-            if(item.classList.contains('eyes')){
-                // Volteamos la carta al quitar la img boca abajo //
-                item.classList.remove('containerItem');
-                // Mostramos la imagen de abajo //
-                item.classList.add('eyesImg');
-                // al ser la primera vez que clickamos quedara boca arriba //
-                cartaVolteada=true;
-                // marcamos que carta esta seleccionada //
-                cartaMarcada='eyes';
-                primeraCartaClass='eyesImg'
-                item.id='1';
-                console.log('su carta seleccionada es ' + cartaMarcada);
-            }
-            // Si tiene grave debajo //
-            if(item.classList.contains('grave')){
-                // Volteamos la carta al quitar la img boca abajo //
-                item.classList.remove('containerItem');
-                // Mostramos la imagen de abajo //
-                item.classList.add('graveImg');
-                // al ser la primera vez que clickamos quedara boca arriba //
-                cartaVolteada=true;
-                // marcamos que carta esta seleccionada //
-                cartaMarcada='grave';
-                primeraCartaClass='graveImg'
-                item.id='1';
-                console.log('su carta seleccionada es ' + cartaMarcada);
-            }
-            // Si tiene hole debajo //
-            if(item.classList.contains('hole')){
-                // Volteamos la carta al quitar la img boca abajo //
-                item.classList.remove('containerItem');
-                // Mostramos la imagen de abajo //
-                item.classList.add('holeImg');
-                // al ser la primera vez que clickamos quedara boca arriba //
-                cartaVolteada=true;
-                // marcamos que carta esta seleccionada //
-                cartaMarcada='hole';
-                primeraCartaClass='holeImg'
-                item.id='1';
-                console.log('su carta seleccionada es ' + cartaMarcada);
-            }
-            // Si tiene kuriboh debajo //
-            if(item.classList.contains('kuriboh')){
-                // Volteamos la carta al quitar la img boca abajo //
-                item.classList.remove('containerItem');
-                // Mostramos la imagen de abajo //
-                item.classList.add('kuribohImg');
-                // al ser la primera vez que clickamos quedara boca arriba //
-                cartaVolteada=true;
-                // marcamos que carta esta seleccionada //
-                cartaMarcada='kuriboh';
-                primeraCartaClass='kuribohImg'
-                item.id='1';
-                console.log('su carta seleccionada es ' + cartaMarcada);
-            }
-            // Si tiene mage debajo //
-            if(item.classList.contains('mage')){
-                // Volteamos la carta al quitar la img boca abajo //
-                item.classList.remove('containerItem');
-                // Mostramos la imagen de abajo //
-                item.classList.add('mageImg');
-                // al ser la primera vez que clickamos quedara boca arriba //
-                cartaVolteada=true;
-                // marcamos que carta esta seleccionada //
-                cartaMarcada='mage';
-                primeraCartaClass='mageImg'
-                item.id='1';
-                console.log('su carta seleccionada es ' + cartaMarcada);
-            }
-            // Si tiene mage2 debajo //
-            if(item.classList.contains('mage2')){
-                // Volteamos la carta al quitar la img boca abajo //
-                item.classList.remove('containerItem');
-                // Mostramos la imagen de abajo //
-                item.classList.add('mage2Img');
-                // al ser la primera vez que clickamos quedara boca arriba //
-                cartaVolteada=true;
-                // marcamos que carta esta seleccionada //
-                cartaMarcada='mage2';
-                primeraCartaClass='mage2Img'
-                item.id='1';
-                console.log('su carta seleccionada es ' + cartaMarcada);
-            }
-            // Si tiene mage3 debajo //
-            if(item.classList.contains('mage3')){
-                // Volteamos la carta al quitar la img boca abajo //
-                item.classList.remove('containerItem');
-                // Mostramos la imagen de abajo //
-                item.classList.add('mage3Img');
-                // al ser la primera vez que clickamos quedara boca arriba //
-                cartaVolteada=true;
-                // marcamos que carta esta seleccionada //
-                cartaMarcada='mage3';
-                primeraCartaClass='mage3Img'
-                item.id='1';
-                console.log('su carta seleccionada es ' + cartaMarcada);
-            }
-            // Si tiene obelis debajo //
-            if(item.classList.contains('obelis')){
-                // Volteamos la carta al quitar la img boca abajo //
-                item.classList.remove('containerItem');
-                // Mostramos la imagen de abajo //
-                item.classList.add('obelisImg');
-                // al ser la primera vez que clickamos quedara boca arriba //
-                cartaVolteada=true;
-                // marcamos que carta esta seleccionada //
-                cartaMarcada='obelis';
-                primeraCartaClass='obelisImg'
-                item.id='1';
-                console.log('su carta seleccionada es ' + cartaMarcada);
-            }
-            // Si tiene poly debajo //
-            if(item.classList.contains('poly')){
-                // Volteamos la carta al quitar la img boca abajo //
-                item.classList.remove('containerItem');
-                // Mostramos la imagen de abajo //
-                item.classList.add('polyImg');
-                // al ser la primera vez que clickamos quedara boca arriba //
-                cartaVolteada=true;
-                // marcamos que carta esta seleccionada //
-                cartaMarcada='poly';
-                primeraCartaClass='polyImg'
-                item.id='1';
-                console.log('su carta seleccionada es ' + cartaMarcada);
-            }
-            // Si tiene ra debajo //
-            if(item.classList.contains('ra')){
-                // Volteamos la carta al quitar la img boca abajo //
-                item.classList.remove('containerItem');
-                // Mostramos la imagen de abajo //
-                item.classList.add('raImg');
-                // al ser la primera vez que clickamos quedara boca arriba //
-                cartaVolteada=true;
-                // marcamos que carta esta seleccionada //
-                cartaMarcada='ra';
-                primeraCartaClass='raImg'
-                item.id='1';
-                console.log('su carta seleccionada es ' + cartaMarcada);
-            }
-            // Si tiene renacer debajo //
-            if(item.classList.contains('renacer')){
-                // Volteamos la carta al quitar la img boca abajo //
-                item.classList.remove('containerItem');
-                // Mostramos la imagen de abajo //
-                item.classList.add('renacerImg');
-                // al ser la primera vez que clickamos quedara boca arriba //
-                cartaVolteada=true;
-                // marcamos que carta esta seleccionada //
-                cartaMarcada='renacer';
-                primeraCartaClass='renacerImg'
-                item.id='1';
-                console.log('su carta seleccionada es ' + cartaMarcada);
-            }
-            // Si tiene sli debajo //
-            if(item.classList.contains('sli')){
-                // Volteamos la carta al quitar la img boca abajo //
-                item.classList.remove('containerItem');
-                // Mostramos la imagen de abajo //
-                item.classList.add('sliImg');
-                // al ser la primera vez que clickamos quedara boca arriba //
-                cartaVolteada=true;
-                // marcamos que carta esta seleccionada //
-                cartaMarcada='sli';
-                primeraCartaClass='sliImg'
-                item.id='1';
-                console.log('su carta seleccionada es ' + cartaMarcada);
+        // No hay aun una carta seleccionada debemos seleccionarla // 
+        else{
+            console.log('no hay carta seleccionada con anterioridad , selecciona la primera carta');
+            if(item.classList.contains('containerItem')){
+                // Si tiene craneo debajo //
+                if(item.classList.contains('craneo')){
+                    // Volteamos la carta al quitar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // Mostramos la imagen de abajo //
+                    item.classList.add('craneoImg');
+                    // al ser la primera vez que clickamos quedara boca arriba //
+                    cartaVolteada=true;
+                    // marcamos que carta esta seleccionada //
+                    cartaMarcada='craneo';
+                    primeraCartaClass='craneoImg'
+                    item.id='1';
+                    console.log('su carta seleccionada es ' + cartaMarcada);
+                }
+                // Si tiene control debajo //
+                if(item.classList.contains('control')){
+                    // Volteamos la carta al quitar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // Mostramos la imagen de abajo //
+                    item.classList.add('controlImg');
+                    // al ser la primera vez que clickamos quedara boca arriba //
+                    cartaVolteada=true;
+                    // marcamos que carta esta seleccionada //
+                    cartaMarcada='control';
+                    primeraCartaClass='controlImg'
+                    item.id='1';
+                    console.log('su carta seleccionada es ' + cartaMarcada);
+                }
+                // Si tiene dragonbb debajo //
+                if(item.classList.contains('dragonbb')){
+                    // Volteamos la carta al quitar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // Mostramos la imagen de abajo //
+                    item.classList.add('dragonbbImg');
+                    // al ser la primera vez que clickamos quedara boca arriba //
+                    cartaVolteada=true;
+                    // marcamos que carta esta seleccionada //
+                    cartaMarcada='dragonbb';
+                    primeraCartaClass='dragonbbImg'
+                    item.id='1';
+                    console.log('su carta seleccionada es ' + cartaMarcada);
+                }
+                // Si tiene cambio debajo //
+                if(item.classList.contains('cambio')){
+                    // Volteamos la carta al quitar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // Mostramos la imagen de abajo //
+                    item.classList.add('cambioImg');
+                    // al ser la primera vez que clickamos quedara boca arriba //
+                    cartaVolteada=true;
+                    // marcamos que carta esta seleccionada //
+                    cartaMarcada='cambio';
+                    primeraCartaClass='cambioImg'
+                    item.id='1';
+                    console.log('su carta seleccionada es ' + cartaMarcada);
+                }
+                // Si tiene dragon debajo //
+                if(item.classList.contains('dragon')){
+                    // Volteamos la carta al quitar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // Mostramos la imagen de abajo //
+                    item.classList.add('dragonImg');
+                    // al ser la primera vez que clickamos quedara boca arriba //
+                    cartaVolteada=true;
+                    // marcamos que carta esta seleccionada //
+                    cartaMarcada='dragon';
+                    primeraCartaClass='dragonImg'
+                    item.id='1';
+                    console.log('su carta seleccionada es ' + cartaMarcada);
+                }
+                // Si tiene dragon2 debajo //
+                if(item.classList.contains('dragon2')){
+                    // Volteamos la carta al quitar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // Mostramos la imagen de abajo //
+                    item.classList.add('dragon2Img');
+                    // al ser la primera vez que clickamos quedara boca arriba //
+                    cartaVolteada=true;
+                    // marcamos que carta esta seleccionada //
+                    cartaMarcada='dragon2';
+                    primeraCartaClass='dragon2Img'
+                    item.id='1';
+                    console.log('su carta seleccionada es ' + cartaMarcada);
+                }
+                // Si tiene eyes debajo //
+                if(item.classList.contains('eyes')){
+                    // Volteamos la carta al quitar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // Mostramos la imagen de abajo //
+                    item.classList.add('eyesImg');
+                    // al ser la primera vez que clickamos quedara boca arriba //
+                    cartaVolteada=true;
+                    // marcamos que carta esta seleccionada //
+                    cartaMarcada='eyes';
+                    primeraCartaClass='eyesImg'
+                    item.id='1';
+                    console.log('su carta seleccionada es ' + cartaMarcada);
+                }
+                // Si tiene grave debajo //
+                if(item.classList.contains('grave')){
+                    // Volteamos la carta al quitar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // Mostramos la imagen de abajo //
+                    item.classList.add('graveImg');
+                    // al ser la primera vez que clickamos quedara boca arriba //
+                    cartaVolteada=true;
+                    // marcamos que carta esta seleccionada //
+                    cartaMarcada='grave';
+                    primeraCartaClass='graveImg'
+                    item.id='1';
+                    console.log('su carta seleccionada es ' + cartaMarcada);
+                }
+                // Si tiene hole debajo //
+                if(item.classList.contains('hole')){
+                    // Volteamos la carta al quitar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // Mostramos la imagen de abajo //
+                    item.classList.add('holeImg');
+                    // al ser la primera vez que clickamos quedara boca arriba //
+                    cartaVolteada=true;
+                    // marcamos que carta esta seleccionada //
+                    cartaMarcada='hole';
+                    primeraCartaClass='holeImg'
+                    item.id='1';
+                    console.log('su carta seleccionada es ' + cartaMarcada);
+                }
+                // Si tiene kuriboh debajo //
+                if(item.classList.contains('kuriboh')){
+                    // Volteamos la carta al quitar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // Mostramos la imagen de abajo //
+                    item.classList.add('kuribohImg');
+                    // al ser la primera vez que clickamos quedara boca arriba //
+                    cartaVolteada=true;
+                    // marcamos que carta esta seleccionada //
+                    cartaMarcada='kuriboh';
+                    primeraCartaClass='kuribohImg'
+                    item.id='1';
+                    console.log('su carta seleccionada es ' + cartaMarcada);
+                }
+                // Si tiene mage debajo //
+                if(item.classList.contains('mage')){
+                    // Volteamos la carta al quitar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // Mostramos la imagen de abajo //
+                    item.classList.add('mageImg');
+                    // al ser la primera vez que clickamos quedara boca arriba //
+                    cartaVolteada=true;
+                    // marcamos que carta esta seleccionada //
+                    cartaMarcada='mage';
+                    primeraCartaClass='mageImg'
+                    item.id='1';
+                    console.log('su carta seleccionada es ' + cartaMarcada);
+                }
+                // Si tiene mage2 debajo //
+                if(item.classList.contains('mage2')){
+                    // Volteamos la carta al quitar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // Mostramos la imagen de abajo //
+                    item.classList.add('mage2Img');
+                    // al ser la primera vez que clickamos quedara boca arriba //
+                    cartaVolteada=true;
+                    // marcamos que carta esta seleccionada //
+                    cartaMarcada='mage2';
+                    primeraCartaClass='mage2Img'
+                    item.id='1';
+                    console.log('su carta seleccionada es ' + cartaMarcada);
+                }
+                // Si tiene mage3 debajo //
+                if(item.classList.contains('mage3')){
+                    // Volteamos la carta al quitar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // Mostramos la imagen de abajo //
+                    item.classList.add('mage3Img');
+                    // al ser la primera vez que clickamos quedara boca arriba //
+                    cartaVolteada=true;
+                    // marcamos que carta esta seleccionada //
+                    cartaMarcada='mage3';
+                    primeraCartaClass='mage3Img'
+                    item.id='1';
+                    console.log('su carta seleccionada es ' + cartaMarcada);
+                }
+                // Si tiene obelis debajo //
+                if(item.classList.contains('obelis')){
+                    // Volteamos la carta al quitar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // Mostramos la imagen de abajo //
+                    item.classList.add('obelisImg');
+                    // al ser la primera vez que clickamos quedara boca arriba //
+                    cartaVolteada=true;
+                    // marcamos que carta esta seleccionada //
+                    cartaMarcada='obelis';
+                    primeraCartaClass='obelisImg'
+                    item.id='1';
+                    console.log('su carta seleccionada es ' + cartaMarcada);
+                }
+                // Si tiene poly debajo //
+                if(item.classList.contains('poly')){
+                    // Volteamos la carta al quitar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // Mostramos la imagen de abajo //
+                    item.classList.add('polyImg');
+                    // al ser la primera vez que clickamos quedara boca arriba //
+                    cartaVolteada=true;
+                    // marcamos que carta esta seleccionada //
+                    cartaMarcada='poly';
+                    primeraCartaClass='polyImg'
+                    item.id='1';
+                    console.log('su carta seleccionada es ' + cartaMarcada);
+                }
+                // Si tiene ra debajo //
+                if(item.classList.contains('ra')){
+                    // Volteamos la carta al quitar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // Mostramos la imagen de abajo //
+                    item.classList.add('raImg');
+                    // al ser la primera vez que clickamos quedara boca arriba //
+                    cartaVolteada=true;
+                    // marcamos que carta esta seleccionada //
+                    cartaMarcada='ra';
+                    primeraCartaClass='raImg'
+                    item.id='1';
+                    console.log('su carta seleccionada es ' + cartaMarcada);
+                }
+                // Si tiene renacer debajo //
+                if(item.classList.contains('renacer')){
+                    // Volteamos la carta al quitar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // Mostramos la imagen de abajo //
+                    item.classList.add('renacerImg');
+                    // al ser la primera vez que clickamos quedara boca arriba //
+                    cartaVolteada=true;
+                    // marcamos que carta esta seleccionada //
+                    cartaMarcada='renacer';
+                    primeraCartaClass='renacerImg'
+                    item.id='1';
+                    console.log('su carta seleccionada es ' + cartaMarcada);
+                }
+                // Si tiene sli debajo //
+                if(item.classList.contains('sli')){
+                    // Volteamos la carta al quitar la img boca abajo //
+                    item.classList.remove('containerItem');
+                    // Mostramos la imagen de abajo //
+                    item.classList.add('sliImg');
+                    // al ser la primera vez que clickamos quedara boca arriba //
+                    cartaVolteada=true;
+                    // marcamos que carta esta seleccionada //
+                    cartaMarcada='sli';
+                    primeraCartaClass='sliImg'
+                    item.id='1';
+                    console.log('su carta seleccionada es ' + cartaMarcada);
+                }
             }
         }
     }
