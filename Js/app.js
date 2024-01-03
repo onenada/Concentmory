@@ -1,5 +1,5 @@
 //@author Paul L. Hernandez <back2bytes@gmail.com> //
-//@link  //
+//@link https://github.com/onenada/Concentmory //
 // Js para capturar datos de usuario
 
 // --------------- Variables --------------- //
@@ -33,6 +33,14 @@ function comprobarForm(event){
         console.log("No seleccionado un tamano de juego");
         tamanoInput.focus();
         error.innerText = "Debes seleccionar un tamaño de juego"
+        event.preventDefault();
+        return false
+    }
+    if(timeSelect.value=="0")
+    {
+        console.log("No seleccionado una dificultad de juego");
+        timeSelect.focus();
+        error.innerText = "Debes seleccionar una dificultad"
         event.preventDefault();
         return false
     }

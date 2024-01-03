@@ -7,7 +7,7 @@ body{
 header, footer{
     text-align: center;
     width: 300px;
-    margin: 30px auto 0px auto;
+    margin: 10px auto 0px auto;
 }
 header h1{
     font-family: 'Lato',sans-serif;

@@ -1,5 +1,5 @@
 //@author Paul L. Hernandez <back2bytes@gmail.com> //
-//@link //
+//@link https://github.com/onenada/Concentmory //
 // Js Para la lógica del juego //
 
 // Variables // 
@@ -96,37 +96,189 @@ function pintarPanelJuegoGrande(){
 
 
 // Funcion que realiza la cuenta hacia atras del juego //
-// function cuentaAtras(){
-//     let tiempoRestante=parseInt(document.getElementById('time').value)-1;
-//     document.getElementById('time').value=tiempoRestante;
-//     if(tiempoRestante==0){
-//         clearInterval(idInterval);
-//         // Finalizar eventos //
-//         const items=document.getElementsByClassName('item');
-//         for (let item of items){
-//             item.removeEventListener('mousedown', comenzarMarcar);
-//             item.removeEventListener('mouseover', continuarMarcar);
-//         }
-//         document.removeEventListener('mouseup', finMarcar);
-//         // Cambiar Z-index de los paneles de juego // 
-//         document.getElementById('endGame').classList.add('endGameColor');
-//         document.getElementById('endGame').style.zIndex='2';
-//         document.getElementById('game').style.zIndex='1';
-//         document.getElementById('newGame').addEventListener('click',(e)=>location.reload());
-//     }
-// }
+function cuentaAtras(){
+    let tiempoRestante=parseInt(document.getElementById('time').value)-1;
+    document.getElementById('time').value=tiempoRestante;
+    if(tiempoRestante==0){
+        clearInterval(idInterval);
+        // Finalizar eventos //
+        const items=document.getElementsByClassName('item');
+        for (let item of items){
+            item.removeEventListener('mousedown', comenzarMarcar);
+        }
+    }
+}
+
+// Funcion para mostrar las cartas //
+function mostrarCartas(){
+    // Obtenemos la coleccion de items en base a su clase //
+    const items=document.getElementsByClassName('containerItem');
+    // convertimos la coleccion en un array ya que sus clases seran modificadas durante cada iteracion //
+    // lo que hara que progresivamente sean menos items y queremos mantener la misma cantidad de inicio a fin //
+    // incluso si borramos la class que los identifica como que esta boca abajo //
+    const itemsArray= Array.from(items);
+    for (let item of itemsArray) {
+        // En cada iteracion quitamos la class containeritem para mostrar lo que hay debajo //
+        if(item.classList.contains( 'craneo')){
+            item.classList.remove('containerItem');
+            item.classList.add('craneoImg');
+            setTimeout(function(){
+                item.classList.remove('craneoImg');
+                item.classList.add('containerItem');
+            },2000)
+        }
+        if(item.classList.contains( 'cambio')){
+            item.classList.remove('containerItem');
+            item.classList.add('cambioImg');
+            setTimeout(function(){
+                item.classList.remove('cambioImg');
+                item.classList.add('containerItem');
+            },2000)
+        }
+        if(item.classList.contains( 'control')){
+            item.classList.remove('containerItem');
+            item.classList.add('controlImg');
+            setTimeout(function(){
+                item.classList.remove('controlImg');
+                item.classList.add('containerItem');
+            },2000)
+        }
+        if(item.classList.contains( 'dragon')){
+            item.classList.remove('containerItem');
+            item.classList.add('dragonImg');
+            setTimeout(function(){
+                item.classList.remove('dragonImg');
+                item.classList.add('containerItem');
+            },2000)
+        }
+        if(item.classList.contains( 'dragon2')){
+            item.classList.remove('containerItem');
+            item.classList.add('dragon2Img');
+            setTimeout(function(){
+                item.classList.remove('dragon2Img');
+                item.classList.add('containerItem');
+            },2000)
+        }
+        if(item.classList.contains( 'dragonbb')){
+            item.classList.remove('containerItem');
+            item.classList.add('dragonbbImg');
+            setTimeout(function(){
+                item.classList.remove('dragonbbImg');
+                item.classList.add('containerItem');
+            },2000)
+        }
+        if(item.classList.contains( 'eyes')){
+            item.classList.remove('containerItem');
+            item.classList.add('eyesImg');
+            setTimeout(function(){
+                item.classList.remove('eyesImg');
+                item.classList.add('containerItem');
+            },2000)
+        }
+        if(item.classList.contains( 'grave')){
+            item.classList.remove('containerItem');
+            item.classList.add('graveImg');
+            setTimeout(function(){
+                item.classList.remove('graveImg');
+                item.classList.add('containerItem');
+            },2000)
+        }
+        if(item.classList.contains( 'hole')){
+            item.classList.remove('containerItem');
+            item.classList.add('holeImg');
+            setTimeout(function(){
+                item.classList.remove('holeImg');
+                item.classList.add('containerItem');
+            },2000)
+        }
+        if(item.classList.contains( 'kuriboh')){
+            item.classList.remove('containerItem');
+            item.classList.add('kuribohImg');
+            setTimeout(function(){
+                item.classList.remove('kuribohImg');
+                item.classList.add('containerItem');
+            },2000)
+        }
+        if(item.classList.contains( 'mage')){
+            item.classList.remove('containerItem');
+            item.classList.add('mageImg');
+            setTimeout(function(){
+                item.classList.remove('mageImg');
+                item.classList.add('containerItem');
+            },2000)
+        }
+        if(item.classList.contains( 'mage2')){
+            item.classList.remove('containerItem');
+            item.classList.add('mage2Img');
+            setTimeout(function(){
+                item.classList.remove('mage2Img');
+                item.classList.add('containerItem');
+            },2000)
+        }
+        if(item.classList.contains( 'mage3')){
+            item.classList.remove('containerItem');
+            item.classList.add('mage3Img');
+            setTimeout(function(){
+                item.classList.remove('mage3Img');
+                item.classList.add('containerItem');
+            },2000)
+        }
+        if(item.classList.contains( 'obelis')){
+            item.classList.remove('containerItem');
+            item.classList.add('obelisImg');
+            setTimeout(function(){
+                item.classList.remove('obelisImg');
+                item.classList.add('containerItem');
+            },2000)
+        }
+        if(item.classList.contains( 'poly')){
+            item.classList.remove('containerItem');
+            item.classList.add('polyImg');
+            setTimeout(function(){
+                item.classList.remove('polyImg');
+                item.classList.add('containerItem');
+            },2000)
+        }
+        if(item.classList.contains( 'ra')){
+            item.classList.remove('containerItem');
+            item.classList.add('raImg');
+            setTimeout(function(){
+                item.classList.remove('raImg');
+                item.classList.add('containerItem');
+            },2000)
+        }
+        if(item.classList.contains( 'renacer')){
+            item.classList.remove('containerItem');
+            item.classList.add('renacerImg');
+            setTimeout(function(){
+                item.classList.remove('renacerImg');
+                item.classList.add('containerItem');
+            },2000)
+        }
+        if(item.classList.contains( 'sli')){
+            item.classList.remove('containerItem');
+            item.classList.add('sliImg');
+            setTimeout(function(){
+                item.classList.remove('sliImg');
+                item.classList.add('containerItem');
+            },2000)
+        }
+    }
+    setTimeout(function(){
+        programarEventosJuego();
+    }, 2000)
+}
 
 // Añadir los eventos al juego //
-
 function programarEventosJuego(){
     const items=document.getElementsByClassName('containerItem');
     for (let item of items){
-        item.addEventListener('mousedown', debounce(comenzarMarcar, 500));
+        item.addEventListener('mousedown', comenzarMarcar);
         // item.addEventListener('mouseover', continuarMarcar);
     }
-    // document.addEventListener('mouseup', finMarcar);
     // Cuenta atrás //
-    // idInterval=setInterval(cuentaAtras,1000)
+    idInterval=setInterval(cuentaAtras,1000);
+    
 }
 
 
@@ -136,6 +288,8 @@ function programarEventosJuego(){
 function comenzarMarcar(event){
     console.log('ya hay una carta seleccionada es: ' + cartaMarcada + ' ' + cartaVolteada);
     console.log('la primera carta es '+ primeraCarta + 'y su clase es ' + primeraCartaClass);
+    const puntuacion=document.getElementById('movimientos');
+    console.log(puntuacion.value + movimientos);
     if(comparacionEnCurso) return;
     else{
         let item=event.target;
@@ -1061,27 +1215,8 @@ function comenzarMarcar(event){
             }
         }
     }
+    puntuacion.value=movimientos;
 }
-
-// Continua el marcado de los puntos mientras el mouse este encima de los puntos
-// @param {} event 
-function continuarMarcar(event){
-    if(inicioMarcado){
-        let item=event.target;
-        let idNuevo=parseInt(item.id);
-        // Es adyacente?
-        if(adyacentes.includes(idNuevo)&& item.classList.contains(cartaMarcada)){
-            let containerItem=event.target.parentElement;
-            if(item.classList.contains('rojo')) containerItem.classList.add('rojo');
-            else if(item.classList.contains('naranja')) containerItem.classList.add('naranja');
-            else if(item.classList.contains('verde')) containerItem.classList.add('verde');
-            // Guardar puntos marcados //
-            idMarcados.push(parseInt(item.id))
-            calcularAdyacentes(parseInt(item.id));
-        }
-    }
-}
-
 
 // MAIN //
 
@@ -1095,4 +1230,4 @@ if (!checkUserData()) location="index.html";
 // Rellenar Formulario //
 rellenarFormularioUsuario();
 seleccionarTamano();
-programarEventosJuego();
+mostrarCartas();
