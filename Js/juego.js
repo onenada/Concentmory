@@ -102,7 +102,7 @@ function cuentaAtras(){
     if(tiempoRestante==0){
         clearInterval(idInterval);
         // Finalizar eventos //
-        const items=document.getElementsByClassName('item');
+        const items=document.getElementsByClassName('containerItem');
         for (let item of items){
             item.removeEventListener('mousedown', comenzarMarcar);
         }
@@ -264,21 +264,21 @@ function mostrarCartas(){
             },2000)
         }
     }
-    setTimeout(function(){
-        programarEventosJuego();
-    }, 2000)
 }
 
 // Añadir los eventos al juego //
 function programarEventosJuego(){
     const items=document.getElementsByClassName('containerItem');
-    for (let item of items){
-        item.addEventListener('mousedown', comenzarMarcar);
-        // item.addEventListener('mouseover', continuarMarcar);
-    }
     // Cuenta atrás //
     idInterval=setInterval(cuentaAtras,1000);
-    
+    // Mostrar las Cartas // 
+    mostrarCartas();
+    // Despues de un tiempo de espera , activa los eventlistener // 
+    setTimeout(function(){
+        for (let item of items){
+            item.addEventListener('mousedown', comenzarMarcar);
+        }
+    }, 2000);
 }
 
 
@@ -1230,4 +1230,5 @@ if (!checkUserData()) location="index.html";
 // Rellenar Formulario //
 rellenarFormularioUsuario();
 seleccionarTamano();
-mostrarCartas();
+programarEventosJuego();
+
